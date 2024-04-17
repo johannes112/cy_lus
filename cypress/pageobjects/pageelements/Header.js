@@ -10,8 +10,14 @@ export default class Header {
   }
 
   cssPathes = {
+    b2xModal: ".B2xModal",
+    b2cButton: '[data-cy-handle="b2c-option"] > .content > .desktop > span',
+    b2bButton: '[data-cy-handle="b2b-option"] > .content > .desktop > span',
+    overlay: ".overlay",
+
     context: '[data-cy-ctx="app/Header"]',
     logo: ".logo",
+    searchFieldCollection: '[data-cy-collection="SearchField"]',
     searchField: '[data-cy-handle="search-input"]',
     searchIcon: '[data-cy-handle="search-icon"]',
     wishlistButton: ".wishlist",
@@ -22,13 +28,23 @@ export default class Header {
     burgermenuButton: ".category-button",
     handleMenuCategoryItem: '[data-cy-handle="select-category-item"]',
     menuCategoryItem: ".CategoryItem",
-    b2bButton: '[data-cy-handle="b2x-toggle"]',
+    customerSwitchClass: ".B2XToggle",
+    customerSwitchState: '[data-cy-state="show-b2x-state"]',
+    customerSwitchToggle: '[data-cy-handle="b2x-toggle"]',
   };
 
   elements = {
+    //modal
+    b2xModal: () => cy.get(this.cssPathes.b2xModal),
+    continueButton: () => cy.get(this.cssPathes.continueButton),
+    b2cButton: () => cy.get(this.cssPathes.b2cButton),
+    b2bButton: () => cy.get(this.cssPathes.b2bButton),
+    overlay: () => cy.get(this.cssPathes.overlay),
+    //header
     context: () => cy.get(this.cssPathes.context),
     logo: () => cy.get(this.cssPathes.logo),
     //search
+    searchFieldCollection: () => cy.get(this.cssPathes.searchFieldCollection),
     searchField: () => cy.get(this.cssPathes.searchField),
     searchIcon: () => cy.get(this.cssPathes.searchIcon),
     //buttons
@@ -44,6 +60,10 @@ export default class Header {
     menuSubCategoryItem: () => cy.get(this.cssPathes.menuSubCategoryItem),
     //b2b/b2c
     b2bButton: () => cy.get(this.cssPathes.b2bButton),
+    //customer switch
+    customerSwitchClass: () => cy.get(this.cssPathes.customerSwitchClass),
+    customerSwitchState: () => cy.get(this.cssPathes.customerSwitchState),
+    customerSwitchToggle: () => cy.get(this.cssPathes.customerSwitchToggle),
   };
 
   actions = {
@@ -58,6 +78,14 @@ export default class Header {
       this.elements.searchField().type(value);
       this.elements.searchIcon().click();
     },
+  };
+
+  urls = {
+    account: "/account/",
+    wishlist: "/wishlist",
+    contact: "/kontakt",
+    cart: "/cart",
+    search: "/search",
   };
 
   cookies = {

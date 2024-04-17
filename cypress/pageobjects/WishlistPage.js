@@ -10,7 +10,7 @@ export default class Wishlist {
   }
 
   cssPathes = {
-    context: ".WishlistItems",
+    context: '[data-cy-ctx="templates/Wishlist"',
     contextProductWidget: '[data-cy-ctx="molecules/ProductWidgetSeries"]',
     //content
     stateEmptyWishlist: '[data-cy-state="show-empty-Wishlist"]',
