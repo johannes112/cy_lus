@@ -13,7 +13,7 @@ export default class Cart {
     context: '[data-cy-ctx="templates/Cart"]',
     //content
     stateEmptyCart: '[data-cy-state="show-empty-cart"]',
-    cartIcon: ".cart",
+    cartIcon: ".cart > .icon-wrapper",
   };
   elements = {
     context: () => cy.get(this.cssPathes.context),

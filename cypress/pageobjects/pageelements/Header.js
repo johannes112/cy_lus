@@ -23,7 +23,7 @@ export default class Header {
     wishlistButton: ".wishlist",
     contactButton: ".contact",
     accountButton: ".account",
-    cartButton: ".cart",
+    cartButton: ".cart .icon-wrapper",
     navigation: ".Navigation",
     burgermenuButton: ".category-button",
     handleMenuCategoryItem: '[data-cy-handle="select-category-item"]',

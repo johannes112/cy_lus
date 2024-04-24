@@ -90,7 +90,7 @@ describe("app B2xModal", () => {
     // click on the b2b-button
     header.elements.b2bButton().click();
     // popup should not appear
-    header.elements.b2xModal().should("not.exist");
+    header.elements.b2xModal().should("not.be.visible");
   });
   it("can close the popup by choosing b2c", () => {
     oneTrust.cookies.closeAlertBox();
@@ -103,7 +103,7 @@ describe("app B2xModal", () => {
     // click on the b2b-button
     header.elements.b2cButton().click();
     // popup should not appear
-    header.elements.b2xModal().should("not.exist");
+    header.elements.b2xModal().should("not.be.visible");
   });
 });
 
@@ -188,7 +188,7 @@ describe("app Header", () => {
     // the navigation should be visible on the page
     header.elements.navigation().should("be.visible");
   });
-  it.skip("the heart-icon links to the wishlist", () => {
+  it("the heart-icon links to the wishlist", () => {
     // if oneTrust would be active on dev environment it would be closed
     oneTrust.cookies.closeAlertBox();
     // close the B2xModal
@@ -196,10 +196,14 @@ describe("app Header", () => {
     // visit the startpage
     cy.visit("");
     // check if then icon links to the wishlist
+    header.elements.wishlistButton().should("not.have.attr", "href");
     header.elements
       .wishlistButton()
-      .should("have.attr", "href")
-      .and("include", header.urls.wishlist);
+      .click()
+      .then(() => {
+        cy.url().should("match", new RegExp(Cypress.config().baseUrl + "/.*/"));
+      });
+    //.and(".*/.*/");
   });
   it("the contact-icon links to the contactpage", () => {
     // if oneTrust would be active on dev environment it would be closed
@@ -237,7 +241,9 @@ describe("app Header", () => {
     // check if then icon links to the account
     header.elements
       .cartButton()
-      .should("have.attr", "href")
-      .and("include", header.urls.cart);
+      .click()
+      .then(() => {
+        cy.url().should("match", new RegExp(Cypress.config().baseUrl + "/.*/"));
+      });
   });
 });

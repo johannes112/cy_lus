@@ -7,10 +7,16 @@ describe("template pdp", () => {
     const oneTrust = new OneTrustPopup();
     header.cookies.setB2b();
     oneTrust.cookies.closeAlertBox();
-    cy.visit("https://dev.lusini.com:8000/");
-    cy.get(".ImgBox > img").first().click();
+    cy.visit("/");
+    cy.get(".ImgBox > img")
+      .first()
+      .click()
+      .then(() => {
+        // check if the url contains the pdp-url
+        cy.url().should("include", "/pdp/");
+      });
 
-    cy.url().should("include", "/pdp/");
+    // cy.url().should("include", "/pdp/");/
   });
 
   it("on the productpage there should be a breadcrumb with the name of the product", () => {
@@ -20,7 +26,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get(".Breadcrumbs").should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
 
     cy.get(".Breadcrumbs")
       .invoke("text")
@@ -37,7 +43,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get('[data-cy-ctx="templates/PDP"]').should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
 
     cy.get('[data-cy-ctx="templates/PDP"]').should("exist");
   });
@@ -49,7 +55,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get(".main-image-container").should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
 
     cy.get(".main-image-container").should("exist");
   });
@@ -60,7 +66,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get(".thumbnail-list").should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
 
     cy.get(".thumbnail-list").should("exist");
   });
@@ -72,7 +78,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get(".InformationBox").should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
 
     // InfoBox is there
     cy.get(".InformationBox").should("exist");
@@ -87,7 +93,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get('[data-cy-collection="BuyBox"]').should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
 
     cy.get('[data-cy-collection="BuyBox"]').should("exist");
   });
@@ -99,7 +105,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get('[data-cy-collection="BuyBox"]').should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
 
     // increase the amount of the product
     cy.get('[data-cy-handle="increase-amount"]').click();
@@ -119,7 +125,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get('[data-cy-collection="BuyBox"]').should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
 
     // increase the amount of the product
     cy.get('[data-cy-handle="decrease-amount"]').click();
@@ -139,7 +145,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get('[data-cy-collection="BuyBox"]').should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
 
     // increase the amount of the product
     cy.get('[data-cy-handle="add-to-cart-btn"]').click();
@@ -155,7 +161,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get('[data-cy-ctx="templates/PDP"]').should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
 
     // increase the amount of the product
     cy.get('[data-cy-handle="add-to-cart-btn"]').click();
@@ -174,7 +180,7 @@ describe("template pdp", () => {
     oneTrust.cookies.closeAlertBox();
     cy.get('[data-cy-ctx="templates/PDP"]').should("not.exist");
 
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
     cy.get('[data-cy-handle="main-image-click"]').click();
 
     cy.get('[data-cy-collection="GalleryLightbox"]').should("exist");

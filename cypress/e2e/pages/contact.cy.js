@@ -16,7 +16,7 @@ describe("template contact", () => {
     header.cookies.setB2b();
     oneTrust.cookies.closeAlertBox();
     // visit the contactpage
-    cy.visit("https://dev.lusini.com:8000" + contact.urls.contact);
+    cy.visit("" + contact.urls.contact);
     // there should be the contact-context
     contact.elements.context().should("be.visible");
   });
@@ -24,7 +24,7 @@ describe("template contact", () => {
     header.cookies.setB2b();
     oneTrust.cookies.closeAlertBox();
     // visit the contactpage
-    cy.visit("https://dev.lusini.com:8000" + contact.urls.contact);
+    cy.visit("" + contact.urls.contact);
     // there should be the contact-context
     contact.elements.contextFormBuilder().should("exist");
   });
@@ -32,7 +32,7 @@ describe("template contact", () => {
     header.cookies.setB2b();
     oneTrust.cookies.closeAlertBox();
     // visit the startpage
-    cy.visit("https://dev.lusini.com:8000/");
+    cy.visit("/");
     cy.url().should("not.include", contact.urls.contact);
     // click on the contact-icon
     contact.elements.contactIcon().click();

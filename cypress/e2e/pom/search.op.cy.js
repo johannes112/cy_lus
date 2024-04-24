@@ -6,7 +6,7 @@ describe("template search", () => {
     cy.setCookie("channel", "b2b");
     const header = new HeaderComponent();
     const oneTrust = new OneTrustPopup();
-    cy.visit("https://dev.lusini.com:8000/");
+    cy.visit("/");
     cy.clearCookies();
     oneTrust.actions.executeActionWithVisibilityCheck("acceptAllCookies");
     // cy.get("#onetrust-accept-btn-handler").click();

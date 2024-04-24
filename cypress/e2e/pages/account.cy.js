@@ -16,7 +16,9 @@ describe("template account", () => {
     oneTrust.cookies.closeAlertBox();
     // visit the accountpage
     // TO USE THIS: start cypress with the url as parameter
-    // npx cypress open --config baseUrl=https://dev.lusini.com:8000
+    // npx cypress open --config-file cypress.dev.json
+    // OR
+    // npx cypress open --config baseUrl=
     cy.visit(account.urls.accountLogin);
     // there should be a product in the wishlist
     account.elements.context().should("exist");
@@ -29,15 +31,19 @@ describe("template account", () => {
     // there should be a product in the wishlist
     account.elements.context().should("exist");
   });
-  it("navigates to account-url when user click to the account-icon", () => {
+  it("navigates to another url when user click to the account-icon", () => {
     header.cookies.setB2b();
     oneTrust.cookies.closeAlertBox();
     // visit the startpage
     cy.visit("/");
     // click on the heart-icon
     cy.url().should("not.include", account.urls.account);
-    account.elements.accountIcon().click();
-    // check if the url contains the wishlist-url
-    cy.url().should("include", account.urls.account);
+    account.elements
+      .accountIcon()
+      .click()
+      .then(() => {
+        // check if the url contains the wishlist-url
+        cy.url().should("include", account.urls.account);
+      });
   });
 });

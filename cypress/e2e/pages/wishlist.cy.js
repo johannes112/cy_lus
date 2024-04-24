@@ -61,7 +61,7 @@ describe("template wishlist", () => {
     header.cookies.setB2b();
     oneTrust.cookies.closeAlertBox();
     // visit a pdp
-    cy.visit("https://dev.lusini.com:8000/pdp/103885/");
+    cy.visit("/pdp/103885/");
     // click on the wishlist-toogle-icon
     cy.get('[data-cy-handle="wishlist-toggle"]').click();
     // wishlist.context should not exist

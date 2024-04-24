@@ -13,7 +13,7 @@ export default class Account {
     context: '[data-cy-ctx="molecules/account/AccountLoginForm"]',
     //content
     stateEmptyCart: '[data-cy-state="show-empty-cart"]',
-    accountIcon: ".account",
+    accountIcon: ".account .icon-wrapper",
   };
   elements = {
     context: () => cy.get(this.cssPathes.context),

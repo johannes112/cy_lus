@@ -37,7 +37,13 @@ describe("template cart", () => {
     oneTrust.cookies.closeAlertBox();
     // visit the startpage
     cy.visit("");
-    // click on the heart-icon
-    cart.elements.cartIcon().should("have.attr", "href", cart.urls.cart);
+    // click on the cart-icon
+    cart.elements
+      .cartIcon()
+      .click()
+      .then(() => {
+        // check if the url contains the wishlist-url
+        cy.url().should("include", cart.urls.cart);
+      });
   });
 });

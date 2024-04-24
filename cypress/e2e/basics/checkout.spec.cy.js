@@ -2,7 +2,7 @@ describe("template checkout", () => {
   it("goes to the checkout as a guest and make an order by prepayment", () => {
     cy.setCookie("channel", "b2b");
     // open the url of a productpage
-    cy.visit("https://dev.lusini.com:8000/pdp/125039/");
+    cy.visit("/pdp/125039/");
 
     // accept the cookie banner
     cy.get("#onetrust-accept-btn-handler").click();

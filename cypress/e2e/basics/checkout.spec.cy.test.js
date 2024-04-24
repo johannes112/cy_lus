@@ -15,7 +15,7 @@ describe("template checkout", () => {
 
     // Call the function or code under test
     cy.setCookie("channel", "b2b");
-    cy.visit("https://dev.lusini.com:8000/pdp/125039/");
+    cy.visit("/pdp/125039/");
     cy.get("#onetrust-accept-btn-handler").click();
     cy.get('[data-cy-handle="add-to-cart-btn"]').click();
     cy.get('[data-cy-handle="go-to-checkout-btn"]').click();
@@ -41,7 +41,7 @@ describe("template checkout", () => {
 
     // Assert the expected outcome
     expect(cy.setCookie).toHaveBeenCalledWith("channel", "b2b");
-    expect(cy.visit).toHaveBeenCalledWith("https://dev.lusini.com:8000/pdp/125039/");
+    expect(cy.visit).toHaveBeenCalledWith("/pdp/125039/");
     expect(cy.get).toHaveBeenCalledWith("#onetrust-accept-btn-handler");
     expect(cy.click).toHaveBeenCalledTimes(15);
     expect(cy.type).toHaveBeenCalledTimes(8);
