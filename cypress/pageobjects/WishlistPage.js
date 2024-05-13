@@ -40,7 +40,13 @@ export default class Wishlist {
       cy.get(this.cssPathes.stateWishlistRemoveInfo),
   };
 
-  actions = {};
+  actions = {
+    clickWishlistToggle: () => this.elements.handleWishlistToggle().click(),
+    clickToRemoveFromWishlist: () =>
+      this.elements.linkRemoveFromWishlist().click(),
+    clickMobileWishlistToggle: () =>
+      this.elements.handleMobileWishlistToggle().click(),
+  };
 
   cookies = {
     setB2b: () => cy.setCookie("channel", "b2b"),

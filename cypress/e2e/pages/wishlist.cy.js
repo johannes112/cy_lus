@@ -50,7 +50,7 @@ describe("template wishlist", () => {
     // visit a pdp
     cy.visit("/pdp/103885/");
     // click on the wishlist-toogle-icon
-    cy.get('[data-cy-handle="wishlist-toggle"]').click();
+    wishlist.actions.clickWishlistToggle();
     // visit the wishlist
     cy.visit(wishlist.urls.wishlist);
     // there should be a product in the wishlist
@@ -63,16 +63,15 @@ describe("template wishlist", () => {
     // visit a pdp
     cy.visit("/pdp/103885/");
     // click on the wishlist-toogle-icon
-    cy.get('[data-cy-handle="wishlist-toggle"]').click();
+    wishlist.actions.clickWishlistToggle();
     // wishlist.context should not exist
     wishlist.elements.contextProductWidget().should("not.exist");
     // visit the wishlist
     cy.visit(wishlist.urls.wishlist);
     // there should be a product in the wishlist
     wishlist.elements.contextProductWidget().should("exist");
-    // click on the remove-link
-    wishlist.elements.linkRemoveFromWishlist().click();
-    // there should be no product in the wishlist
+    // // click on the remove-link
+    wishlist.actions.clickToRemoveFromWishlist();
     wishlist.elements.contextProductWidget().should("not.exist");
   });
 
@@ -81,8 +80,9 @@ describe("template wishlist", () => {
     oneTrust.cookies.closeAlertBox();
     // visit a pdp
     cy.visit("/pdp/103885/");
+    header.cookies.setB2b();
     // click on the wishlist-toogle-icon
-    cy.get('[data-cy-handle="wishlist-toggle"]').click();
+    wishlist.actions.clickWishlistToggle();
     // visit the wishlist
     cy.visit(wishlist.urls.wishlist);
     // there should be a product in the wishlist

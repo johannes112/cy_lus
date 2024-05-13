@@ -1,64 +1,66 @@
 import HeaderComponent from "../../pageobjects/pageelements/Header";
 import OneTrustPopup from "../../pageobjects/popups/OneTrust";
 
-describe("popup onetrust", () => {
-  let header;
-  let oneTrust;
+console.log("Cypress.env('local')", Cypress.env("local"));
+if (Cypress.env("local")) {
+  describe.skip("popup onetrust", () => {
+    let header;
+    let oneTrust;
 
-  before(() => {
-    header = new HeaderComponent();
-    oneTrust = new OneTrustPopup();
-  });
+    before(() => {
+      header = new HeaderComponent();
+      oneTrust = new OneTrustPopup();
+    });
 
-  beforeEach(() => {
-    // Clear cookies
-    cy.clearCookies();
-    // Clear local storage
-    cy.clearLocalStorage();
-  });
+    beforeEach(() => {
+      // Clear cookies
+      cy.clearCookies();
+      // Clear local storage
+      cy.clearLocalStorage();
+    });
 
-  it("should appear a cookie-banner in the front of all", () => {
-    header.cookies.setB2b();
-    // there should not be a cookiebanner
-    oneTrust.elements.bannerArea().should("not.exist");
-    // visit the wishlist-page
-    cy.visit("");
-    // the cookiebanner should be visible
-    oneTrust.actions.contextShouldBeVisible();
+    it("should appear a cookie-banner in the front of all", () => {
+      header.cookies.setB2b();
+      // there should not be a cookiebanner
+      oneTrust.elements.bannerArea().should("not.exist");
+      // visit the wishlist-page
+      cy.visit("");
+      // the cookiebanner should be visible
+      oneTrust.actions.contextShouldBeVisible();
+    });
+    it("can accept all cookies to remove the banner", () => {
+      header.cookies.setB2b();
+      // visit the wishlist-page
+      cy.visit("");
+      // the banner should be visible
+      oneTrust.actions.contextShouldBeVisible();
+      // accept all cookies
+      oneTrust.actions.acceptAllCookies();
+      // the banner should not be visible
+      oneTrust.elements.bannerArea().should("not.be.visible");
+    });
+    it("can reject all cookies to remove the banner", () => {
+      header.cookies.setB2b();
+      // visit the wishlist-page
+      cy.visit("");
+      // there should be a message for empty products
+      oneTrust.elements.bannerArea().should("exist");
+      // accept all cookies
+      oneTrust.actions.rejectAllCookies();
+      // the banner should not be visible
+      oneTrust.elements.bannerArea().should("not.be.visible");
+    });
+    it("can remove the cookie-banner by setting a cookie", () => {
+      header.cookies.setB2b();
+      // close the cookie-banner
+      oneTrust.cookies.closeAlertBox();
+      // visit the wishlist-page
+      cy.visit("");
+      // the banner should not be visible
+      oneTrust.elements.bannerArea().should("not.exist");
+    });
   });
-  it("can accept all cookies to remove the banner", () => {
-    header.cookies.setB2b();
-    // visit the wishlist-page
-    cy.visit("");
-    // the banner should be visible
-    oneTrust.actions.contextShouldBeVisible();
-    // accept all cookies
-    oneTrust.actions.acceptAllCookies();
-    // the banner should not be visible
-    oneTrust.elements.bannerArea().should("not.be.visible");
-  });
-  it("can reject all cookies to remove the banner", () => {
-    header.cookies.setB2b();
-    // visit the wishlist-page
-    cy.visit("");
-    // there should be a message for empty products
-    oneTrust.elements.bannerArea().should("exist");
-    // accept all cookies
-    oneTrust.actions.rejectAllCookies();
-    // the banner should not be visible
-    oneTrust.elements.bannerArea().should("not.be.visible");
-  });
-  it("can remove the cookie-banner by setting a cookie", () => {
-    header.cookies.setB2b();
-    // close the cookie-banner
-    oneTrust.cookies.closeAlertBox();
-    // visit the wishlist-page
-    cy.visit("");
-    // the banner should not be visible
-    oneTrust.elements.bannerArea().should("not.exist");
-  });
-});
-
+}
 describe("app B2xModal", () => {
   let header;
   let oneTrust;

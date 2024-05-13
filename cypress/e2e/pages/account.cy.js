@@ -15,10 +15,7 @@ describe("template account", () => {
     header.cookies.setB2b();
     oneTrust.cookies.closeAlertBox();
     // visit the accountpage
-    // TO USE THIS: start cypress with the url as parameter
-    // npx cypress open --config-file cypress.dev.json
-    // OR
-    // npx cypress open --config baseUrl=
+
     cy.visit(account.urls.accountLogin);
     // there should be a product in the wishlist
     account.elements.context().should("exist");
