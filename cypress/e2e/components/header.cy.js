@@ -190,6 +190,23 @@ describe("app Header", () => {
     // the navigation should be visible on the page
     header.elements.navigation().should("be.visible");
   });
+  it("the search-icon links to the searchpage", () => {
+    // if oneTrust would be active on dev environment it would be closed
+    oneTrust.cookies.closeAlertBox();
+    // close the B2xModal
+    header.cookies.setB2b();
+    // visit the startpage
+    cy.visit("");
+    // check if then icon links to the wishlist
+    header.elements.searchIcon().should("not.have.attr", "href");
+    header.elements
+      .searchIcon()
+      .click()
+      .then(() => {
+        cy.url().should("match", new RegExp(Cypress.config().baseUrl + "/.*/"));
+      });
+    //.and(".*/.*/");
+  });
   it("the heart-icon links to the wishlist", () => {
     // if oneTrust would be active on dev environment it would be closed
     oneTrust.cookies.closeAlertBox();
