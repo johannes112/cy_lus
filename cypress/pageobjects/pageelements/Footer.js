@@ -65,7 +65,7 @@ export default class Footer {
 
     changeCustomerType: () => this.elements.b2bButton().click(),
     executeSearchFor: (value) => {
-      this.elements.searchField().type(value);
+      this.elements.searchInput().type(value);
       this.elements.searchIcon().click();
     },
   };

@@ -18,7 +18,7 @@ export default class Header {
     context: '[data-cy-ctx="app/Header"]',
     logo: ".logo",
     searchFieldCollection: '[data-cy-collection="SearchField"]',
-    searchField: '[data-cy-handle="search-input"]',
+    searchInput: '[data-cy-handle="search-input"]',
     searchIcon: '[data-cy-handle="search-icon"]',
     wishlistButton: ".wishlist",
     contactButton: ".contact",
@@ -45,7 +45,7 @@ export default class Header {
     logo: () => cy.get(this.cssPathes.logo),
     //search
     searchFieldCollection: () => cy.get(this.cssPathes.searchFieldCollection),
-    searchField: () => cy.get(this.cssPathes.searchField),
+    searchInput: () => cy.get(this.cssPathes.searchInput),
     searchIcon: () => cy.get(this.cssPathes.searchIcon),
     //buttons
     wishlistButton: () => cy.get(this.cssPathes.wishlistButton),
@@ -75,7 +75,7 @@ export default class Header {
     contextShouldBeVisible: () => this.elements.context().should("be.visible"),
     changeCustomerType: () => this.elements.b2bButton().click(),
     executeSearchFor: (value) => {
-      this.elements.searchField().type(value);
+      this.elements.searchInput().type(value);
       this.elements.searchIcon().click();
     },
   };
